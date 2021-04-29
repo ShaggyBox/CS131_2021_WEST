@@ -164,11 +164,11 @@ int main()
     string a = "";
 
     cout << "Test Cases From Main:\n";
-    cout << myHash(g) << "\n";
-    cout << myHash(h) << "\n";
-    cout << myHash(i) << "\n";
-    cout << myHash(j) << "\n";
-    cout << myHash(k) << "\n";
+    cout << myHash(g) << "\n";                                  //Result should be C56244CD
+    cout << myHash(h) << "\n";                                  //Result should be 47C0C7B1
+    cout << myHash(i) << "\n";                                  //Result should be 4251A8C1
+    cout << myHash(j) << "\n";                                  //Result should be E19D3F81
+    cout << myHash(k) << "\n";                                  //Result should be E909D216
     cout << "\n";
 
     cout << "Enter your own message to be hashed: ";
