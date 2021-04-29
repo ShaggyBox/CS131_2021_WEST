@@ -173,6 +173,6 @@ int main()
     cout << "\n";
 
     cout << "Enter your own message to be hashed: ";
-    cin >> a;
+    getline(cin >> ws, a);
     cout << "Hash: " << myHash(a) << "\n";
 }
