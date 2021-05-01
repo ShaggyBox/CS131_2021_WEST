@@ -2,12 +2,6 @@
 //Discrete Math Project
 //Title: Secret Message Translator
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package discrete.project;
 
 import java.util.Scanner; //Need for Scanner class
 /**
@@ -32,7 +26,7 @@ public class DiscreteProject
            
        displayMainMenu();
        
-       mainChoice = keyboard.nextInt();// TODO code application logic here
+       mainChoice = keyboard.nextInt();
         keyboard.nextLine(); //returns true if and only if this scanner has another line of input
        
        switch(mainChoice)
@@ -41,14 +35,18 @@ public class DiscreteProject
                         System.out.print("\nEnter The Message to EnCrypt: ");
                         text = keyboard.nextLine();
                         String encryptedMsg = encryptMessage(text,SHIFT).toString();
-                        System.out.println("Secrect Message: " + encryptedMsg);
+                        System.out.println("Secret Message: " + encryptedMsg);
+                        
                     break;
                       
                   case 2:
                         System.out.println("\nEnter The Message to Decrypt: ");
                         cipher = keyboard.nextLine();
+                        
                         String decryptedMsg =decryptMessage(cipher,26-SHIFT).toString();
-			System.out.println("Decrypted Mssage: " + decryptedMsg);//Decrypt Message
+                        
+			System.out.println("Decrypted Mssage: " + decryptedMsg);
+			
                     break;
                       
                   case 3:
@@ -83,10 +81,20 @@ public class DiscreteProject
                                       s - 65) % 26 + 65);
                     result.append(ch);
                 }
-                else
+                else if (Character.isLowerCase(text.charAt(i)))
                 {
                     char ch = (char)(((int)text.charAt(i) +
                                       s - 97) % 26 + 97);
+                    result.append(ch);
+                }
+                else if (Character.isWhitespace(text.charAt(i)))
+                {
+                    char ch = ' ';
+                    result.append(ch);
+                }
+                else
+                {
+                    char ch = text.charAt(i);
                     result.append(ch);
                 }
 
@@ -107,10 +115,21 @@ public class DiscreteProject
                                       s - 65) % 26 + 65);
                     result.append(ch);
                 }
-                else
+                else if (Character.isLowerCase(cipher.charAt(i)))
                 {
                     char ch = (char)(((int)cipher.charAt(i) +
                                       s - 97) % 26 + 97);
+                    result.append(ch);
+                }
+                
+                 else if (Character.isWhitespace(cipher.charAt(i)))
+                {
+                    char ch = ' ';
+                    result.append(ch);
+                }
+                else
+                {
+                    char ch = cipher.charAt(i);
                     result.append(ch);
                 }
 
