@@ -1,6 +1,6 @@
 //Name: Justin Reyes
 //Language: C++
-//Project Description: This program acts as a hash function for string inputs. 
+//Project Description: This program acts as a hash function for string inputs.
 //              This is a hash algorithm that I created on my own with a few influences from SHA-256.
 //              However, this is definitely nowhere near as complex/secure as other hashing algorithms
 //              that already exist, so please don't use this for anything important.
@@ -15,7 +15,7 @@
 
 using namespace std;
 
-string binToHex(string b)                                       //converts binary to hexadecimal
+string binToHex(string b)                                       //converts binary to hexadecimal (after reversing the binary)
 {
     reverse(b.begin(), b.end());
     string hex = "";
@@ -151,7 +151,7 @@ string myHash(string text)                                      //uses previous 
     string gB4 = XOR(gB2, gB3, gB1.length());                   //creates a new binary value that is gB2 XOR gB3 = gB4
     string gB5 = XOR(gB1, gB4, gB4.length());                   //creates a new binary value that is gB4 XOR gB1 = gB5
 
-    string hash = binToHex(gB5);                                //converts the gB5 binary to hexadecimal, which is the final hash returned
+    string hash = binToHex(gB5);                                //converts a reversed version of the gB5 binary to hexadecimal, which is the final hash returned
 
     return hash;
 }
@@ -210,9 +210,9 @@ string cmyHash(string text)                                     //this is the sa
 
     cout << "    " << gB5 << "\n\n";
 
-    string hash = binToHex(gB5);                             
+    string hash = binToHex(gB5);                                
 
-    cout << "This gB5 value is converted to hexadecimal to get the final hash digest: ";
+    cout << "This gB5 value is reversed and converted to hexadecimal to get the final hash digest: ";
 
     return hash;
 }
