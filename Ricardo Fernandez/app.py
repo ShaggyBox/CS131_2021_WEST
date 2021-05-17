@@ -1,5 +1,6 @@
 import itertools
-
+import numpy as np
+import matplotlib.pyplot as plt
 
 #The sides of our dice
 dice= [1,2,3,4,5,6]
@@ -29,5 +30,4 @@ print(event)
 
 #Laplace's definition for the probability of an event.
 probability = len(event)/len(sampleSpace)
-
 print("The probablity of rolling a "+ str(desiredSum) +" with two six-sided dice is: " + format(probability,'.4f') + "%")
