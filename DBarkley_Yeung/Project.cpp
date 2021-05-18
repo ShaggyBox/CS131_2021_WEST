@@ -8,25 +8,29 @@
 #include <ctime>
 namespace plt = matplotlibcpp;
 using namespace std;
-int main()
-{
-	tm datetm;
+		vector <double> xtickValue;
+		vector <string>  xtickNames;
+
+void readFile (string fileName, string commodity, bool doTicks){
+    tm datetm;
+
 	memset(&datetm,0,sizeof(datetm));
 
-    std::ifstream input("BTC_USD_2013-09-30_2021-04-29-CoinDesk.csv",
+    std::ifstream input(fileName,
                         std::ios::in);
 
 	if (!input.is_open())
 	{
 		std::cout << "failed to open  \n";
+		return;
 	}
-	else {
 		if (!input)
 		{
 			std::cout << "...could not open file, ending.";
-			return -1;
+			return ;
 		}
 		vector<double> x,y;
+		vector<string> xNames;
         string line;
 		getline(input,line);
 		while (!input.eof())
@@ -46,14 +50,33 @@ int main()
 			datetm.tm_year= year;
 			time_t time =mktime(&datetm);// date turned into int 
 			x.push_back(time);
+			xNames.push_back( date);
         }
-	    plt::figure_size(1200, 780);
-		plt::named_plot("Bitcoin", x, y);
-		plt::title("Prices");
+		plt::named_plot(commodity, x, y);
+		if (doTicks)
+		{
+		for ( int i=0; i<7; i++){
+			int index =i*x.size()/7;
+			xtickValue.push_back(x.at(index));
+			xtickNames.push_back (xNames.at(index));
+			
+		}
+		xtickValue.push_back (x.at(x.size()-1))	;
+		xtickNames.push_back (xNames.at(xNames.size()-1));
+		
+		plt::xticks(xtickValue, xtickNames);
+		}
+ }
+int main()
+{
+	 plt::figure_size(1200, 780);
+	plt::title("Prices");
+	readFile("BTC_USD_2013-09-30_2021-04-29-CoinDesk.csv","Bitcoin", true);
+readFile("ETH_USD_2015-08-08_2021-04-29-CoinDesk.csv","Ethereum", false);
+
 		// Enable legend.
 		plt::legend();
 		plt::show();
 
     }
 			
-}
