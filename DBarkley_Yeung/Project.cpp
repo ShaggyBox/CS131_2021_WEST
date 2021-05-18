@@ -62,7 +62,11 @@ void readFile(string fileName, string commodity, bool doTicks) {
   }
 }
 
-int main() {
+int main(int argc, char **argv) {
+  bool save = false;
+  string saveArg = "--save";
+  if (argc >= 2 && saveArg == argv[1])
+    save = true;
   plt::figure_size(1200, 780);
   plt::title("Prices");
   readFile("BTC_USD_2013-09-30_2021-04-29-CoinDesk.csv", "Bitcoin", true);
@@ -70,5 +74,9 @@ int main() {
 
   // Enable legend.
   plt::legend();
-  plt::show();
+  if (save) {
+    plt::save("plot.png");
+  } else {
+    plt::show();
+  }
 }
