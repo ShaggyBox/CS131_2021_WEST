@@ -1,2 +1,2 @@
-# Discreate Probability Project
+# Discrete  Probability Project
 This is my Code and Presentation for CS 131's Project. You can find a video presentation of this project at https://www.youtube.com/watch?v=dPeVb9XlDZ0. Please note I mispoke at 5:22 in the video by saying 6 instead of 12. I added a subtitle in the video addressing this error. Please enable closed captions so you can see it.
