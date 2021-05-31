@@ -1,0 +1,113 @@
+#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+
+#include <bits/stdc++.h>
+using namespace std;
+  
+
+string encryptRailFence(string text, int key)
+{
+    
+    char rail[key][(text.length())];
+  
+    for (int i=0; i < key; i++)
+        for (int j = 0; j < text.length(); j++)
+            rail[i][j] = '\n';
+  
+    
+    bool directionD = false;
+    int row = 0, col = 0;
+  
+    for (int i=0; i < text.length(); i++)
+    {
+      
+        if (row == 0 || row == key-1)
+            directionD = !directionD;
+  
+        rail[row][col++] = text[i];
+ 
+        directionD?row++ : row--;
+    }
+  
+    
+    string result;
+    for (int i=0; i < key; i++)
+        for (int j=0; j < text.length(); j++)
+            if (rail[i][j]!='\n')
+                result.push_back(rail[i][j]);
+  
+    return result;
+}
+
+string decryptRailFence(string cipher, int key)
+{
+  
+    char rail[key][cipher.length()];
+ 
+    for (int i=0; i < key; i++)
+        for (int j=0; j < cipher.length(); j++)
+            rail[i][j] = '\n';
+  
+   
+    bool directionD;
+    int row = 0, col = 0;
+    for (int i=0; i < cipher.length(); i++)
+    {
+        
+        if (row == 0)
+            diectionD = true;
+        if (row == key-1)
+            directionD = false;
+  
+        rail[row][col++] = '*';
+ 
+        directionD?row++ : row--;
+    }
+  
+    
+    int index = 0;
+    for (int i=0; i<key; i++)
+        for (int j=0; j<cipher.length(); j++)
+            if (rail[i][j] == '*' && index<cipher.length())
+                rail[i][j] = cipher[index++];
+  
+
+    string result;
+  
+    row = 0, col = 0;
+    for (int i=0; i< cipher.length(); i++)
+    {
+       
+        if (row == 0)
+            directionD = true;
+        if (row == key-1)
+            directionD = false;
+ 
+        if (rail[row][col] != '*')
+            result.push_back(rail[row][col++]);
+      
+        directionD?row++: row--;
+    }
+    return result;
+}
+  
+
+int main()
+{
+    cout << encryptRailFence("Dungeons with Dragons", 2) << endl;
+    cout << encryptRailFence("The food is spicy", 3) << endl;
+    cout << encryptRailFence("Star wars is cool", 3) << endl;
+  
+    cout << decryptRailFence("TF SYH ODI PCEOSI",3) << endl;
+    cout << decryptRailFence("DNEN IHDAOSUGOSWT RGN",2) << endl;
+    cout << decryptRailFence("S S LTRWR SCOAAIO",3) << endl;
+  
+    return 0;
+}
+}
+
